@@ -1,13 +1,11 @@
-const TaskSchema	= require('../data-access/schemas/task');
-
 // Factories
-const taskModelFactory  	= require('../data-access/task');
+const taskModelFactory  	= require('../data-access/models/task');
 const taskGeneratorFactory  = require('./task-generator');
 const taskDropperFactory 	= require('./task-dropper');
 
 module.exports = (connection, generateConfig) => {
 	// Instances
-	const Task				= taskModelFactory(connection, TaskSchema);
+	const Task				= taskModelFactory(connection);
 	const tasksGenerator	= taskGeneratorFactory(Task, generateConfig.tasks);
 	const taskDropper 		= taskDropperFactory(Task);
 

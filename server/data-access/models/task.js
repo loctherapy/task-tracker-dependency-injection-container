@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-module.exports = new Schema({
+const TaskSchema = new Schema({
 	name: {
 		type: String,
 		unique: false,
@@ -18,3 +18,7 @@ module.exports = new Schema({
 		required: true
 	}
 });
+
+module.exports = (connection) => {
+	return connection.model('Task', TaskSchema);
+};

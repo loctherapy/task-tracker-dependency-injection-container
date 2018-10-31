@@ -4,28 +4,22 @@ const bodyParser  	= require("body-parser");
 const jsonParser 	= bodyParser.json();
 const config 		= require("./config");
 const port			= config.port;
-const TaskSchema 	= require('./data-access/schemas/task');
-
-
 
 // DI Container for Test Database
 const testDIContainer = require('./dependency-injection-container')();
 testDIContainer.register('dbUrl', config.dbUris.test);
 testDIContainer.register('generateConfig', config.generate);
-testDIContainer.register('TaskSchema', TaskSchema);
 testDIContainer.factory('connection', require('./data-access/db-connection'));
-testDIContainer.factory('TaskModel', require('./data-access/task'));
+testDIContainer.factory('TaskModel', require('./data-access/models/task'));
 testDIContainer.factory('taskDropper', require('./data-gen/task-dropper'));
 testDIContainer.factory('taskGenerator', require('./data-gen/task-generator'));
 testDIContainer.factory('dataGenerator', require('./data-gen/data-generator'));
 
-
 // Service Locator for Prod Database
 const prodDIContainer = require('./dependency-injection-container')();
 prodDIContainer.register('dbUrl', config.dbUris.prod);
-prodDIContainer.register('TaskSchema', TaskSchema);
 prodDIContainer.factory('connection', require('./data-access/db-connection'));
-prodDIContainer.factory('TaskModel', require('./data-access/task'));
+prodDIContainer.factory('TaskModel', require('./data-access/models/task'));
 
 // Generate Test DB
 testDIContainer.get('dataGenerator').generate();
