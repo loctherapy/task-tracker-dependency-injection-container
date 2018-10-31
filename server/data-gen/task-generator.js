@@ -1,6 +1,8 @@
 const random = require('./../random');
 
-module.exports = (TaskModel, n) => {
+module.exports = (TaskModel, generateConfig) => {
+
+	const n = generateConfig.tasks;
 
 	return {
 		generate: () => {
