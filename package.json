@@ -1,0 +1,22 @@
+{
+	"name": "task-tracker-dependency-injection-container",
+	"version": "1.0.0",
+	"description": "Task Tracker App showing Dependency Injection Container pattern",
+	"main": "server/app.js",
+	"scripts": {
+		"start": "node server/app.js"
+	},
+	"keywords": [
+		"dependency",
+		"injection",
+		"dependency injection"
+	],
+	"author": "Egor Panok",
+	"license": "MIT",
+	"dependencies": {
+		"body-parser": "^1.18.3",
+		"express": "^4.16.3",
+		"mongoose": "^5.3.1",
+		"parse-fn-args": "^1.0.1"
+	}
+}
