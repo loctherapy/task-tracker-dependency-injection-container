@@ -16,7 +16,7 @@ module.exports = function () {
 	diContainer.get = (name) => {
 		if (!dependencies[name]) {
 			const factory = factories[name];
-			dependencies[name] = factory && diContainer.inject(factory);
+			dependencies[name] = factory && inject(factory);
 			if (!dependencies[name]) {
 				throw new Error('Cannot find module: ' + name);
 			}
@@ -24,10 +24,10 @@ module.exports = function () {
 		return dependencies[name];
 	};
 
-	diContainer.inject = (factory) => {
+	function inject(factory) {
 		const args = fnArgs(factory).map(dependency => diContainer.get(dependency));
 		return factory.apply(null, args);
-	};
+	}
 
 	return diContainer;
 };
